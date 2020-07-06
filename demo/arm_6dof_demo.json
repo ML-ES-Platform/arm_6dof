@@ -1,0 +1,181 @@
+{
+    "Description": "Application Demo for 3-DOF Robotic arm  control",
+    "Name": "arm_6dof_demo",
+    "git": "https://github.com/ML-ES-Platform/arm_6dof_demo.git",
+    "Path": "ASW/arm_6dof_demo/",
+    "Components": {
+        "ADC_PIN": {
+            "Name": "null",
+            "Groups": {
+                "MCAL_ADC": {
+                    "Name": "null",
+                    "Channels": {
+                        "A3": "null",
+                        "A4": "null",
+                        "A5": "null"
+                    }
+                }
+            }
+        },
+        "ADC": {
+            "Name": "mcal_adc",
+            "git": "https://github.com/ML-ES-Platform/mcal_adc.git",
+            "Path": "MCAL/mcal_adc/",
+            "Groups": {
+                "MCAL_ADC": {
+                    "Name": "mcal_adc",
+                    "Channels": {
+                        "ADC_1": "A3",
+                        "ADC_2": "A4",
+                        "ADC_3": "A5"
+                    }
+                }
+            }
+        },
+        "POT": {
+            "Name": "dd_potentiometer",
+            "git" : "https://github.com/ML-ES-Platform/dd_potentiometer",
+            "Path": "ESW/dd_pot/",
+            "Groups": {
+                "DD_POT": {
+                    "Name": "dd_pot",
+                    "Channels": {
+                        "POT_1": "ADC_1",
+                        "POT_2": "ADC_2",
+                        "POT_3": "ADC_3"
+                    },
+                    "Pull": "ADC_ReadChannel"
+                }
+            }
+        },
+        "ANGSNS": {
+            "Name": "vd_angle_sens",
+            "git": "https://github.com/ML-ES-Platform/vd_angle_sens.git",
+            "Path": "ESW/vd_angle_sens/",
+            "Groups": {
+                "VD_ANGLE_SENS": {
+                    "Name": "vd_angle_sens",
+                    "Channels": {
+                        "ANGSNS_1": "POT_1",
+                        "ANGSNS_2": "POT_2",
+                        "ANGSNS_3": "POT_3"
+                    },
+                    "Pull": "POT_GetPosition"
+                }
+            }
+        },
+        "PCA9685_PIN": {
+            "Name": "null",
+            "Groups": {
+                "PCA9685_PIN": {
+                    "Name": "null",
+                    "Channels": {
+                        "PCA9685_PIN_1": "null",
+                        "PCA9685_PIN_2": "null",
+                        "PCA9685_PIN_3": "null"
+                    }
+                }
+            }
+        },
+        "PCA9685": {
+            "Name": "dd_pca9685",
+            "git":"https://github.com/ML-ES-Platform/dd_pca9685.git",
+            "Path": "ESW/dd_pca9685/",
+            "Groups": {
+                "PCA9685": {
+                    "Name": "dd_pca9685",
+                    "Channels": {
+                        "PCA9685_PWM_1": "PCA9685_PIN_1",
+                        "PCA9685_PWM_2": "PCA9685_PIN_2",
+                        "PCA9685_PWM_3": "PCA9685_PIN_3"
+                    },
+                    "Defines": {
+                        "PCA9685_PWM_FREQ": 50
+                    }
+                }
+            }
+        },
+        "DDSERVO": {
+            "Name": "dd_servo",
+            "git":"https://github.com/ML-ES-Platform/dd_servo.git",
+            "Path": "ESW/dd_servo/",
+            "Groups": {
+                "DD_SERVO": {
+                    "Name": "dd_servo",
+                    "Channels": {
+                        "DD_SERVO_1": "PCA9685_PWM_1",
+                        "DD_SERVO_2": "PCA9685_PWM_2",
+                        "DD_SERVO_3": "PCA9685_PWM_3"
+                    },
+                    "Push": "PCA9685_WriteChannel"
+                }
+            }
+        },
+        "VDSERVO": {
+            "Name": "vd_servo",
+            "git":"https://github.com/ML-ES-Platform/vd_servo.git",
+            "Path": "ESW/vd_servo/",
+            "Groups": {
+                "VD_SERVO": {
+                    "Name": "vd_servo",
+                    "Channels": {
+                        "VD_SERVO_1": "DD_SERVO_1",
+                        "VD_SERVO_2": "DD_SERVO_2",
+                        "VD_SERVO_3": "DD_SERVO_3"
+                    },
+                    "Runnable": {
+                        "Task": "VDSERVO_ChannelRunnable",
+                        "Recurrence": "SERVO_TASK_REC",
+                        "Timeout": "SERVO_TASK_OFFSET"
+                    },
+                    "Defines": {
+                        "SECOND_MS": 1000.0,
+                        "SERVO_TASK_REC": 10,
+                        "SERVO_TASK_OFFSET": 100
+                    },
+                    "Push": "DDSERVO_SetAngle"
+                }
+            }
+        },
+        "TTOS": {
+            "Name": "os_time_trig",
+            "git":"https://github.com/ML-ES-Platform/os_time_trig.git",
+            "Path": "BSW/os_time_trig/"
+        },
+        "ARM_6DOF": {
+            "Name": "arm_6dof",
+            "git":"https://github.com/ML-ES-Platform/arm_6dof.git",
+            "Path": "ASW/arm_6dof/",
+            "Groups": {
+                "ARM_6DOF": {
+                    "Name": "arm_6dof",
+                    "Channels": {
+                        "ARM_9DOF_1": "null"
+                    }
+                },
+                "ARM_Servo": {
+                    "Name": "arm_6dof_Servo",
+                    "Parent": "ARM_9DOF_1",
+                    "Channels": {
+                        "ACT_BASE": "VD_SERVO_1",
+                        "ACT_L1": "VD_SERVO_2",
+                        "ACT_L2": "VD_SERVO_3",
+                        "ACT_ROLL": "null",
+                        "ACT_PITCH": "null",
+                        "ACT_CLAW": "null"
+                    },
+                    "Push": "VDSERVO_AngleSet"
+                },
+                "ARM_Segment": {
+                    "Name": "arm_6dof_Segment",
+                    "Parent": "ARM_9DOF_1",
+                    "Channels": {
+                        "SEG_BASE": "null",
+                        "SEG_L1": "null",
+                        "SEG_L2": "null"
+                    }
+                }
+            }
+        }
+    }
+}

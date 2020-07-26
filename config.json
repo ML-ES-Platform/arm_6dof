@@ -1,0 +1,45 @@
+{
+    "Components": {
+        "arm_6dof": {
+            "Name": "arm_6dof",
+            "git": "https://github.com/ML-ES-Platform/arm_6dof.git",
+            "Path": "ESW/arm_6dof/",
+            "Groups": {
+                "arm_6dof": {
+                    "Name": "arm_6dof",
+                    "NameSpace": "arm_6dof",
+                    "Multiplicity": "0-*",
+                    "Push": [
+                        "ADC_ReadChannel"
+                    ],
+                    "Pull": [],
+                    "Dependencies": [
+                        "arm_6dof"
+                    ],
+                    "Channels": {
+                        "Multiplicity": "1-8",
+                        "NameSpace": "arm_6dof"
+                    },
+                    "Defines": {
+                        "PCA9685_PWM_FREQ": 50
+                    }
+                },
+                "arm_6dof_servo": {
+                    "Name": "arm_6dof_servo",
+                    "NameSpace": "arm_6dof_servo",
+                    "Multiplicity": "1",
+                    "Push": [],
+                    "Pull": [],
+                    "Dependencies": [
+                        "vd_servo"
+                    ],
+                    "Channels": {
+                        "Multiplicity": "6",
+                        "NameSpace": "ARM_SERVO"
+                    },
+                    "Defines": {}
+                }
+            }
+        }
+    }
+}

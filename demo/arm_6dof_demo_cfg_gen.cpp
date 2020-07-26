@@ -1,5 +1,5 @@
 /**
-* @file arm_6dof_demo_config_gen.cpp
+* @file arm_6dof_demo_cfg_gen.cpp
 * @author your name (you@domain.com)
 * @brief 
 * @version 0.1
@@ -23,14 +23,17 @@ Std_ReturnType arm_6dof_demo_config(void)
     Serial.print("MCAL_ADC configured - Error : ");
     Serial.println(error);
 
+    Serial.print("NULL configured - Error : ");
+    Serial.println(error);
 
-    error += DD_POT_ChannelSetup(POT_1, ADC_1);
-    error += DD_POT_ChannelSetup(POT_2, ADC_2);
-    error += DD_POT_ChannelSetup(POT_3, ADC_3);
 
-    error += DD_POT_SetPullMethod(POT_1, ADC_ReadChannel);
-    error += DD_POT_SetPullMethod(POT_2, ADC_ReadChannel);
-    error += DD_POT_SetPullMethod(POT_3, ADC_ReadChannel);
+    error += DD_POTENTIOMETER_ChannelSetup(POT_1, ADC_1);
+    error += DD_POTENTIOMETER_ChannelSetup(POT_2, ADC_2);
+    error += DD_POTENTIOMETER_ChannelSetup(POT_3, ADC_3);
+
+    error += DD_POTENTIOMETER_SetPullMethod(POT_1, ADC_ReadChannel);
+    error += DD_POTENTIOMETER_SetPullMethod(POT_2, ADC_ReadChannel);
+    error += DD_POTENTIOMETER_SetPullMethod(POT_3, ADC_ReadChannel);
     Serial.print("DD_POT configured - Error : ");
     Serial.println(error);
 

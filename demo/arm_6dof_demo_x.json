@@ -4,10 +4,10 @@
     "git": "https://github.com/ML-ES-Platform/arm_6dof_demo.git",
     "Path": "ASW/arm_6dof_demo/",
     "Components": {
-        "MCU_ADC_PIN": {
+        "ADC_PIN": {
             "Name": "null",
             "Groups": {
-                "MCU_ADC_PIN": {
+                "MCAL_ADC": {
                     "Name": "null",
                     "Channels": {
                         "A3": "null",
@@ -17,31 +17,22 @@
                 }
             }
         },
-        "ADC": {
+        "mcal_adc": {
             "Name": "mcal_adc",
             "git": "https://github.com/ML-ES-Platform/mcal_adc.git",
             "Path": "MCAL/mcal_adc/",
             "Groups": {
-                "mcal_adc": {
+                "MCAL_ADC": {
                     "Name": "mcal_adc",
                     "Channels": {
                         "ADC_1": "A3",
                         "ADC_2": "A4",
                         "ADC_3": "A5"
                     }
-                },
-                "mcal_adc_pin": {
-                    "Name": "null",
-                    "Channels": {
-                        "A3": "null",
-                        "A4": "null",
-                        "A5": "null"
-                    }
                 }
-
             }
         },
-        "POT": {
+        "dd_potentiometer": {
             "Name": "dd_potentiometer",
             "git": "https://github.com/ML-ES-Platform/dd_potentiometer",
             "Path": "ESW/dd_pot/",
@@ -57,7 +48,7 @@
                 }
             }
         },
-        "ANGSNS": {
+        "vd_angle_sens": {
             "Name": "vd_angle_sens",
             "git": "https://github.com/ML-ES-Platform/vd_angle_sens.git",
             "Path": "ESW/vd_angle_sens/",
@@ -86,7 +77,7 @@
                 }
             }
         },
-        "PCA9685": {
+        "dd_pca9685": {
             "Name": "dd_pca9685",
             "git": "https://github.com/ML-ES-Platform/dd_pca9685.git",
             "Path": "ESW/dd_pca9685/",
@@ -104,7 +95,7 @@
                 }
             }
         },
-        "DDSERVO": {
+        "dd_servo": {
             "Name": "dd_servo",
             "git": "https://github.com/ML-ES-Platform/dd_servo.git",
             "Path": "ESW/dd_servo/",
@@ -120,14 +111,13 @@
                 }
             }
         },
-        "VDSERVO": {
+        "vd_servo": {
             "Name": "vd_servo",
             "git": "https://github.com/ML-ES-Platform/vd_servo.git",
             "Path": "ESW/vd_servo/",
             "Groups": {
                 "VD_SERVO": {
                     "Name": "vd_servo",
-                    "Component": "dd_servo",
                     "Channels": {
                         "VD_SERVO_1": "DD_SERVO_1",
                         "VD_SERVO_2": "DD_SERVO_2",
@@ -147,12 +137,12 @@
                 }
             }
         },
-        "TTOS": {
+        "os_time_trig": {
             "Name": "os_time_trig",
             "git": "https://github.com/ML-ES-Platform/os_time_trig.git",
             "Path": "BSW/os_time_trig/"
         },
-        "ARM_6DOF": {
+        "arm_6dof": {
             "Name": "arm_6dof",
             "git": "https://github.com/ML-ES-Platform/arm_6dof.git",
             "Path": "ASW/arm_6dof/",

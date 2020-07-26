@@ -1,5 +1,5 @@
 /**
- * @file arm_6dof_demo_config.h
+ * @file arm_6dof_demo_cfg_gen.h
  * @author your name (you@domain.com)
  * @brief 
  * @version 0.1
@@ -15,11 +15,12 @@
 
 #define MCAL_ADC_CONFIG
 enum MCAL_ADC_IdType {ADC_1, ADC_2, ADC_3, MCAL_ADC_CHANNEL_NR_OF};
+enum NULL_IdType {A3, A4, A5, NULL_CHANNEL_NR_OF};
 #include "MCAL/mcal_adc/mcal_adc.h"
 
-#define DD_POT_CONFIG
+#define DD_POTENTIOMETER_CONFIG
 enum DD_POT_IdType {POT_1, POT_2, POT_3, DD_POT_CHANNEL_NR_OF};
-#include "ESW/dd_pot/dd_pot.h"
+#include "ESW/dd_pot/dd_potentiometer.h"
 
 #define VD_ANGLE_SENS_CONFIG
 enum VD_ANGLE_SENS_IdType {ANGSNS_1, ANGSNS_2, ANGSNS_3, VD_ANGLE_SENS_CHANNEL_NR_OF};

@@ -1,0 +1,11 @@
+{
+    "FileName": "arm_6dof_demo_y.json",
+    "Components": {
+        "dd_potentiometer": {
+            "Name": "dd_potentiometer"
+        },
+        "dd_pca9685": {
+            "Name": "dd_pca9685"
+        }
+    }
+}

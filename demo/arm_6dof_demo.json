@@ -46,8 +46,8 @@
             "git": "https://github.com/ML-ES-Platform/dd_potentiometer",
             "Path": "ESW/dd_pot/",
             "Groups": {
-                "DD_POT": {
-                    "Name": "dd_pot",
+               "dd_potentiometer": {
+                    "Name":"dd_potentiometer",
                     "Channels": {
                         "POT_1": "ADC_1",
                         "POT_2": "ADC_2",

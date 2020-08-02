@@ -38,7 +38,7 @@
             "Path": "ESW/dd_pot/",
             "Groups": {
                 "DD_POT": {
-                    "Name": "dd_pot",
+                    "Name": ,
                     "Channels": {
                         "POT_1": "ADC_1",
                         "POT_2": "ADC_2",

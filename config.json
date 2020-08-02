@@ -1,41 +1,80 @@
 {
     "Components": {
         "arm_6dof": {
-            "Name": "arm_6dof",
             "git": "https://github.com/ML-ES-Platform/arm_6dof.git",
             "Path": "ESW/arm_6dof/",
             "Groups": {
-                "arm_6dof": {
-                    "Name": "arm_6dof",
-                    "NameSpace": "arm_6dof",
-                    "Multiplicity": "0-*",
+                "ARM_6DOF": {
+                    "NameSpace": "ARM_6DOF",
+                    "Multiplicity": "1-*",
                     "Push": [
-                        "ADC_ReadChannel"
+                        "ARM_SetX",
+                        "ARM_SetY",
+                        "ARM_SetZ"
                     ],
-                    "Pull": [],
-                    "Dependencies": [
-                        "arm_6dof"
+                    "Pull": [
+                        "ARM_GetX",
+                        "ARM_GetY",
+                        "ARM_GetZ"
                     ],
                     "Channels": {
-                        "Multiplicity": "1-8",
-                        "NameSpace": "arm_6dof"
-                    },
-                    "Defines": {
-                        "PCA9685_PWM_FREQ": 50
+                        "Names": [
+                            "ARM_X",
+                            "ARM_Y",
+                            "ARM_Z",
+                            "ARM_CLAW_angle",
+                            "ARM_CLAW_open"
+                        ]
                     }
                 },
-                "arm_6dof_servo": {
-                    "Name": "arm_6dof_servo",
-                    "NameSpace": "arm_6dof_servo",
+                "ARM_Segment": {
+                    "NameSpace": "ARM_Segment",
+                    "Names": [
+                        "ARM_Segment"
+                    ],
                     "Multiplicity": "1",
                     "Push": [],
                     "Pull": [],
-                    "Dependencies": [
-                        "vd_servo"
+                    "Dependency": [],
+                    "Channels": {
+                        "Multiplicity": "1-8",
+                        "NameSpace": "ARM_Segment",
+                        "Names": [
+                            "ARM_Segment"
+                        ]
+                    },
+                    "Defines": {}
+                },
+                "ARM_Servo": {
+                    "NameSpace": "ARM_Servo",
+                    "Names": [
+                        "ARM_Servo_x"
+                    ],
+                    "Multiplicity": "1"
+                },
+                "ARM_Actuate": {
+                    "NameSpace": "ARM_Actuate",
+                    "Names": [
+                        "ARM_Actuate"
+                    ],
+                    "Multiplicity": "1",
+                    "Push": [],
+                    "Pull": [],
+                    "Dependency": [
+                        "vd_servo",
+                        "vd_stepper"
                     ],
                     "Channels": {
-                        "Multiplicity": "6",
-                        "NameSpace": "ARM_SERVO"
+                        "Multiplicity": "9",
+                        "NameSpace": "ARM_ACT",
+                        "Names": [
+                            "ACT_BASE",
+                            "ACT_L1",
+                            "ACT_L2",
+                            "ACT_ROLL",
+                            "ACT_PITCH",
+                            "ACT_CLAW"
+                        ]
                     },
                     "Defines": {}
                 }
